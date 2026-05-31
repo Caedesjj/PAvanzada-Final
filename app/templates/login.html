@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+{% block title %}Iniciar Sesión - TaskFlow{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow">
+            <div class="card-body p-5">
+                <h1 class="card-title text-center mb-4">🔐 Login</h1>
+                
+                <form method="POST" action="/login">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Ingresar</button>
+                </form>
+                
+                <hr>
+                
+                <p class="text-center">
+                    ¿No tienes cuenta? 
+                    <a href="/register">Registrate aquí</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

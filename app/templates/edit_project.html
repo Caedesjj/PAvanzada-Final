@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block title %}Editar Proyecto - TaskFlow{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <h1 class="card-title mb-4">✏️ Editar Proyecto</h1>
+                
+                <form method="POST" action="/project/{{ project.id }}/edit">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre del Proyecto *</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ project.name }}" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="description" name="description" rows="4">{{ project.description }}</textarea>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="/project/{{ project.id }}" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

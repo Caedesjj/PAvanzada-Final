@@ -78,10 +78,7 @@ class Task(db.Model):
         db.ForeignKey('users.id'),
         nullable=True
     )
-    
-    # Timestamps para auditoría
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
     
     # Relación One-to-Many con Notification
     notifications = db.relationship(

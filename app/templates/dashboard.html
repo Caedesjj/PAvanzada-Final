@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+
+{% block title %}Dashboard - TaskFlow{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h1>📊 Mis Proyectos</h1>
+    </div>
+    <div class="col-md-4 text-end">
+        <a href="/project/create" class="btn btn-success">➕ Nuevo Proyecto</a>
+    </div>
+</div>
+
+{% if projects %}
+    <div class="row">
+        {% for project in projects %}
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.name }}</h5>
+                        <p class="card-text text-muted">{{ project.description }}</p>
+                        <p class="card-text">
+                            <small class="text-secondary">
+                                📅 Creado: {{ project.created_at.strftime('%d/%m/%Y') }}<br>
+                                ✅ Tareas: {{ project.tasks|length }}
+                            </small>
+                        </p>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <a href="/project/{{ project.id }}" class="btn btn-sm btn-primary">Ver Proyecto</a>
+                        <a href="/project/{{ project.id }}/edit" class="btn btn-sm btn-warning">Editar</a>
+                        <form method="POST" action="/project/{{ project.id }}/delete" style="display:inline;">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar?')">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info text-center">
+        <p>No tienes proyectos aún.</p>
+        <a href="/project/create" class="btn btn-primary">Crear tu primer proyecto</a>
+    </div>
+{% endif %}
+{% endblock %}
