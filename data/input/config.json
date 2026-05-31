@@ -1,0 +1,7 @@
+{
+  "app_name": "TaskFlow",
+  "debug": true,
+  "database": "sqlite:///instance/taskflow.db",
+  "log_file": "data/output/system.log",
+  "monitor_interval": 60
+}
