@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tareas - TaskFlow</title>
+</head>
+<body>
+    <h1>Tareas</h1>
+    <ul>
+    {% for task in tasks %}
+        <li>{{ task.title }} - {{ task.status }}</li>
+    {% endfor %}
+    </ul>
+    <a href="/">Volver</a>
+</body>
+</html>
