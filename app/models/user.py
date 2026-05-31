@@ -7,7 +7,7 @@ Los usuarios pueden tener roles (admin, member) y crear proyectos.
 """
 
 
-from app import db
+from app.models import db
 from datetime import datetime
 
 

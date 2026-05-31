@@ -1,4 +1,4 @@
-from app import db
+from app.models import db
 from datetime import datetime
 
   # Tipos de acciones válidas en el sistema
