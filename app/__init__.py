@@ -25,22 +25,30 @@ def create_app():
     # Inicializar db con la app
     db.init_app(app)
     
-    # ===========================
     # REGISTRAR RUTAS
-    # ===========================
+   
     from app.routes import init_routes
     init_routes(app)
     
-    # ===========================
+    from app.routes import init_routes
+    init_routes(app)
+    
+   
+    # REGISTRAR API REST
+    
+    from app.api import register_api
+    register_api(app)
+    
+    
     # CREAR TABLAS
-    # ===========================
+   
     with app.app_context():
         db.create_all()
         print("✅ Base de datos inicializada")
     
-    # ===========================
+  
     # INICIAR SERVICIOS DE FONDO (PRÓXIMAMENTE)
-    # ===========================
+   
     # TODO: Descomentar después de implementar API REST
     # from app.services import start_background_services
     # start_background_services(app)
