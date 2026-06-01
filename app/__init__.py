@@ -30,10 +30,7 @@ def create_app():
     from app.routes import init_routes
     init_routes(app)
     
-    from app.routes import init_routes
-    init_routes(app)
-    
-   
+
     # REGISTRAR API REST
     
     from app.api import register_api

@@ -3,31 +3,45 @@
 {% block title %}Iniciar Sesión - TaskFlow{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
+<div class="row justify-content-center min-vh-100 align-items-center">
     <div class="col-md-5">
-        <div class="card shadow">
+        <div class="card shadow-lg">
             <div class="card-body p-5">
-                <h1 class="card-title text-center mb-4">Iniciar Sesión</h1>
+                <div class="text-center mb-4">
+                    <h1 class="display-6" style="font-size: 2.5rem;">
+                        <i class="fas fa-lock" style="color: #00ff88;"></i>
+                    </h1>
+                    <h2 class="card-title">INICIAR SESIÓN</h2>
+                    <p class="text-muted" style="font-size: 0.85rem; letter-spacing: 1px;">BIENVENIDO A TASKFLOW</p>
+                </div>
                 
                 <form method="POST" action="/login">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Usuario</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
+                    <div class="mb-4">
+                        <label for="username" class="form-label">
+                            <i class="fas fa-user"></i> Usuario
+                        </label>
+                        <input type="text" class="form-control" id="username" name="username" required placeholder="Tu usuario">
                     </div>
                     
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
+                    <div class="mb-4">
+                        <label for="password" class="form-label">
+                            <i class="fas fa-key"></i> Contraseña
+                        </label>
+                        <input type="password" class="form-control" id="password" name="password" required placeholder="Tu contraseña">
                     </div>
                     
-                    <button type="submit" class="btn btn-primary w-100 mb-3">Ingresar</button>
+                    <button type="submit" class="btn btn-primary w-100 mb-3">
+                        <i class="fas fa-sign-in-alt"></i> ENTRAR
+                    </button>
                 </form>
                 
-                <hr>
+                <hr style="border-color: rgba(0, 212, 255, 0.2);">
                 
-                <p class="text-center">
+                <p class="text-center" style="color: #a0a0a0;">
                     ¿No tienes cuenta? 
-                    <a href="/register">Registrate aquí</a>
+                    <a href="/register" style="color: var(--accent);">
+                        <strong>Registrate aquí</strong>
+                    </a>
                 </p>
             </div>
         </div>

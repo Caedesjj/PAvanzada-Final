@@ -3,12 +3,16 @@
 {% block title %}Dashboard - TaskFlow{% endblock %}
 
 {% block content %}
-<div class="row mb-4">
+<div class="row mb-5">
     <div class="col-md-8">
-        <h1>📊 Mis Proyectos</h1>
+        <h1 class="glow">
+            <i class="fas fa-th-large"></i> MIS PROYECTOS
+        </h1>
     </div>
     <div class="col-md-4 text-end">
-        <a href="/project/create" class="btn btn-success"> Nuevo Proyecto</a>
+        <a href="/project/create" class="btn btn-success">
+            <i class="fas fa-plus-circle"></i> NUEVO PROYECTO
+        </a>
     </div>
 </div>
 
@@ -16,22 +20,30 @@
     <div class="row">
         {% for project in projects %}
             <div class="col-md-6 mb-4">
-                <div class="card shadow-sm h-100">
+                <div class="card shadow-lg h-100">
                     <div class="card-body">
-                        <h5 class="card-title">{{ project.name }}</h5>
-                        <p class="card-text text-muted">{{ project.description }}</p>
-                        <p class="card-text">
-                            <small class="text-secondary">
-                                 Creado: {{ project.created_at.strftime('%d/%m/%Y') }}<br>
-                                 Tareas: {{ project.tasks|length }}
+                        <h5 class="card-title">
+                            <i class="fas fa-folder"></i> {{ project.name }}
+                        </h5>
+                        <p class="card-text">{{ project.description }}</p>
+                        <p class="card-text" style="font-size: 0.85rem;">
+                            <small>
+                                📅 {{ project.created_at.strftime('%d/%m/%Y') }}<br>
+                                ✅ {{ project.tasks|length }} tareas
                             </small>
                         </p>
                     </div>
-                    <div class="card-footer bg-white">
-                        <a href="/project/{{ project.id }}" class="btn btn-sm btn-primary">Ver Proyecto</a>
-                        <a href="/project/{{ project.id }}/edit" class="btn btn-sm btn-warning">Editar</a>
+                    <div class="card-footer bg-transparent border-top" style="border-top-color: rgba(0, 212, 255, 0.2);">
+                        <a href="/project/{{ project.id }}" class="btn btn-sm btn-primary">
+                            <i class="fas fa-eye"></i> VER
+                        </a>
+                        <a href="/project/{{ project.id }}/edit" class="btn btn-sm btn-warning">
+                            <i class="fas fa-edit"></i> EDITAR
+                        </a>
                         <form method="POST" action="/project/{{ project.id }}/delete" style="display:inline;">
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar?')">Eliminar</button>
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar?')">
+                                <i class="fas fa-trash"></i> ELIMINAR
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -39,9 +51,12 @@
         {% endfor %}
     </div>
 {% else %}
-    <div class="alert alert-info text-center">
-        <p>No tienes proyectos aún.</p>
-        <a href="/project/create" class="btn btn-primary">Crear tu primer proyecto</a>
+    <div class="alert alert-info text-center py-5">
+        <h3><i class="fas fa-inbox"></i> SIN PROYECTOS</h3>
+        <p style="margin: 20px 0;">Aún no tienes proyectos. ¡Crea tu primer proyecto ahora!</p>
+        <a href="/project/create" class="btn btn-primary">
+            <i class="fas fa-rocket"></i> CREAR PROYECTO
+        </a>
     </div>
 {% endif %}
 {% endblock %}
