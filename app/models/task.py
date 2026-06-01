@@ -54,6 +54,10 @@ class Task(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
+    #Permite upload de un Documento relacionado a la tarea
+    document_filename = db.Column(db.String(255), nullable=True)  
+    document_path = db.Column(db.String(255), nullable=True)     
+    
     # Atributos de la tabla
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)

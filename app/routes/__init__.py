@@ -27,3 +27,21 @@ def register_error_routes(app):
     @app.errorhandler(500)
     def server_error(error):
         return render_template('500.html'), 500
+    
+def init_routes(app):
+    """Registra todas las rutas de la aplicación."""
+    
+    from app.routes.auth_routes import register_auth_routes
+    register_auth_routes(app)
+    
+    from app.routes.project_routes import register_project_routes
+    register_project_routes(app)
+    
+    from app.routes.task_routes import register_task_routes
+    register_task_routes(app)
+    
+    # ← AGREGAR ESTA LÍNEA
+    from app.routes.file_routes import register_file_routes
+    register_file_routes(app)
+    
+    register_error_routes(app)

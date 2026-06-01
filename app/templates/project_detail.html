@@ -9,9 +9,15 @@
         <p class="text-muted">{{ project.description }}</p>
     </div>
     <div class="col-md-4 text-end">
-        <a href="/task/create/{{ project.id }}" class="btn btn-success"> Nueva Tarea</a>
-        <a href="/project/{{ project.id }}/edit" class="btn btn-warning">Editar</a>
-        <a href="/dashboard" class="btn btn-secondary">Volver</a>
+        <a href="/task/create/{{ project.id }}" class="btn btn-success">
+            <i class="fas fa-plus-circle"></i> NUEVA TAREA
+        </a>
+        <a href="/project/{{ project.id }}/edit" class="btn btn-warning">
+            <i class="fas fa-edit"></i> EDITAR
+        </a>
+        <a href="/dashboard" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> VOLVER
+        </a>
     </div>
 </div>
 
@@ -24,6 +30,7 @@
                     <th>Estado</th>
                     <th>Prioridad</th>
                     <th>Fecha Límite</th>
+                    <th>Documento</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -60,8 +67,23 @@
                             {% endif %}
                         </td>
                         <td>
+                            <!-- Documento -->
+                            {% if task.document_filename %}
+                                <a href="/task/{{ task.id }}/download" class="btn btn-sm btn-info" title="Descargar documento">
+                                    <i class="fas fa-download"></i> {{ task.document_filename }}
+                                </a>
+                            {% else %}
+                                <form method="POST" action="/task/{{ task.id }}/upload" enctype="multipart/form-data" style="display:inline;">
+                                    <input type="file" name="file" accept=".pdf,.doc,.docx,.txt,.xls,.xlsx,.jpg,.png" style="max-width: 150px; font-size: 0.8rem;" onchange="this.form.submit();" title="Sube un documento">
+                                </form>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <!-- Botón Eliminar -->
                             <form method="POST" action="/task/{{ task.id }}/delete" style="display:inline;">
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar?')">Eliminar</button>
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar?')">
+                                    <i class="fas fa-trash"></i> ELIMINAR
+                                </button>
                             </form>
                         </td>
                     </tr>
@@ -71,8 +93,11 @@
     </div>
 {% else %}
     <div class="alert alert-info text-center">
-        <p>No hay tareas en este proyecto.</p>
-        <a href="/task/create/{{ project.id }}" class="btn btn-primary">Crear primera tarea</a>
+        <h3><i class="fas fa-inbox"></i> SIN TAREAS</h3>
+        <p style="margin: 20px 0;">No hay tareas en este proyecto.</p>
+        <a href="/task/create/{{ project.id }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> CREAR PRIMERA TAREA
+        </a>
     </div>
 {% endif %}
 {% endblock %}
