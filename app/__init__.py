@@ -1,14 +1,22 @@
+"""
+Inicialización de TaskFlow.
+"""
+
 import os
 from flask import Flask
-from app.models import db   # importa db desde models
+from app.models import db
+
 
 def create_app():
+    """Factory de aplicación Flask."""
     app = Flask(__name__, template_folder='templates')
     
     # Asegura que la carpeta instance existe
     os.makedirs(app.instance_path, exist_ok=True)
     
-    # Configurar base de datos
+    # ===========================
+    # CONFIGURACIÓN DE BD
+    # ===========================
     db_path = os.path.join(app.instance_path, 'taskflow.db')
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -17,12 +25,24 @@ def create_app():
     # Inicializar db con la app
     db.init_app(app)
     
-    # Registrar rutas (blueprints)
+    # ===========================
+    # REGISTRAR RUTAS
+    # ===========================
     from app.routes import init_routes
     init_routes(app)
     
-    # Crear tablas si no existen
+    # ===========================
+    # CREAR TABLAS
+    # ===========================
     with app.app_context():
         db.create_all()
+        print("✅ Base de datos inicializada")
+    
+    # ===========================
+    # INICIAR SERVICIOS DE FONDO (PRÓXIMAMENTE)
+    # ===========================
+    # TODO: Descomentar después de implementar API REST
+    # from app.services import start_background_services
+    # start_background_services(app)
     
     return app
