@@ -1,19 +1,6 @@
 from app.models import db
 from datetime import datetime
 
-  # Tipos de acciones válidas en el sistema
-ACTION_USER_LOGIN = "user_login"
-ACTION_USER_LOGOUT = "user_logout"
-ACTION_USER_CREATED = "user_created"
-ACTION_PROJECT_CREATED = "project_created"
-ACTION_PROJECT_UPDATED = "project_updated"
-ACTION_PROJECT_DELETED = "project_deleted"
-ACTION_TASK_CREATED = "task_created"
-ACTION_TASK_UPDATED = "task_updated"
-ACTION_TASK_DELETED = "task_deleted"
-ACTION_TASK_COMPLETED = "task_completed"
-ACTION_NOTIFICATION_CREATED = "notification_created"
-ACTION_ERROR = "error"
 
 class LogEntry(db.Model):
 
@@ -34,7 +21,21 @@ class LogEntry(db.Model):
         user_id (int): ID del usuario que realizó la acción (Foreign Key, opcional).
         created_at (datetime): Fecha y hora en que ocurrió la acción.
     """
-    
+      # Tipos de acciones válidas en el sistema
+    ACTION_USER_LOGIN = "user_login"
+    ACTION_USER_LOGOUT = "user_logout"
+    ACTION_USER_CREATED = "user_created"
+    ACTION_PROJECT_CREATED = "project_created"
+    ACTION_PROJECT_UPDATED = "project_updated"
+    ACTION_PROJECT_DELETED = "project_deleted"
+    ACTION_TASK_CREATED = "task_created"
+    ACTION_TASK_UPDATED = "task_updated"
+    ACTION_TASK_DELETED = "task_deleted"
+    ACTION_TASK_COMPLETED = "task_completed"
+    ACTION_NOTIFICATION_CREATED = "notification_created"
+    ACTION_ERROR = "error"
+
+
     __tablename__ = "log_entries"
 
     id = db.Column(db.Integer, primary_key=True)

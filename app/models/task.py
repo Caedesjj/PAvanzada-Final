@@ -51,6 +51,9 @@ class Task(db.Model):
     PRIORITY_HIGH = "alta"
     VALID_PRIORITIES = [PRIORITY_LOW, PRIORITY_MEDIUM, PRIORITY_HIGH]
     
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
     # Atributos de la tabla
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)

@@ -38,7 +38,8 @@ class Project(db.Model):
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text)
     
-    
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     # Key al admin del proyecto
     owner_id = db.Column(

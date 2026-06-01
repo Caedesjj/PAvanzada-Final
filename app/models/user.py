@@ -46,10 +46,16 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
 
     password = db.Column(db.String(255), nullable=False)
+    
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    
 
     role = db.Column(db.String(20), default="member")
+
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
-# Relaciones con otras tablas
+    # Relaciones con otras tablas
     projects = db.relationship(
         'Project',
         backref='owner',  # Permite acceder al propietario desde Project
